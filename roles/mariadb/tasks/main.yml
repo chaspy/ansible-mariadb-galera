@@ -1,0 +1,9 @@
+---
+- name: put repo file
+  template: src=MariaDB.repo dest=/etc/yum.repos.d/
+- name: install mariadb
+  yum: name="{{ item }}" state=latest
+  with_items:
+    - MariaDB-server
+- name: start mariadb
+  systemd: name=mysql state=started enabled=yes
