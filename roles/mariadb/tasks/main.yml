@@ -5,5 +5,13 @@
   yum: name="{{ item }}" state=latest
   with_items:
     - MariaDB-server
+- name: copy galera config
+  template: src=galera.cnf dest=/etc/my.cnf.d/
+- name: open port
+  firewalld: port={{ item }}/tcp  permanent=true state=enabled immediate=true
+  with_items:
+    - 3306
+    - 4567
+    - 4444
 - name: start mariadb
   systemd: name=mysql state=started enabled=yes

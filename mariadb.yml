@@ -2,4 +2,5 @@
 - hosts: mariadb
   sudo: yes
   roles: 
+  - firewalld
   - mariadb

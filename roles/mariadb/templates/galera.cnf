@@ -1,0 +1,11 @@
+[galera]
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://{{ wsrep_cluster_address }}
+binlog_format=ROW
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+wsrep_on=ON
+
+wsrep_cluster_name={{ wsrep_cluster_name }}
+wsrep_node_name={{ ansible_hostname }}
+wsrep_node_address={{ ansible_eth0.ipv4.address }}
